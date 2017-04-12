@@ -12,7 +12,6 @@
     <Compile Include="Prelude.fs" />
     <Compile Include="Benchmarks.fs" />
     <Compile Include="Main.fs" />
-    <EmbeddedResource Include="**\*.resx" />
     <EmbeddedResource Include="**\*.json" />
   </ItemGroup>
 

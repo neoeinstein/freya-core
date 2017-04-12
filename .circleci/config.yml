@@ -9,15 +9,13 @@ jobs:
       - checkout
       - run: dotnet --info
       - run: dotnet restore
-      - run: dotnet build -f netstandard1.6 -c Release src/Freya.Core
-      - run: dotnet build -f netstandard1.6 -c Release src/Freya.Core.Hopac
-#      - run: dotnet build -c Release
-#      - run: dotnet test -c Release tests/Freya.Core.Tests/Freya.Core.Tests.fsproj
-#      - run: dotnet test -c Release tests/Freya.Core.Hopac.Tests/Freya.Core.Hopac.Tests.fsproj
-#      - run: dotnet pack -c Release --include-source --include-symbols
+      - run: dotnet build -c Release
+      - run: dotnet test -c Release tests/Freya.Core.Tests/Freya.Core.Tests.fsproj
+      - run: dotnet test -c Release tests/Freya.Core.Hopac.Tests/Freya.Core.Hopac.Tests.fsproj
+      - run: dotnet pack -c Release --include-source --include-symbols
       - store_artifacts:
-          path: ~/build/src/Freya.Core/bin
+          path: ~/build/src/Freya.Core/bin/Release
           destination: Freya.Core
       - store_artifacts:
-          path: ~/build/src/Freya.Core.Hopac/bin
+          path: ~/build/src/Freya.Core.Hopac/bin/Release
           destination: Freya.Core.Hopac
