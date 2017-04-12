@@ -22,8 +22,9 @@ jobs:
             mkdir -p /tmp/test-results/Freya.Core.Hopac.Tests
             cd tests/Freya.Core.Hopac.Tests
             dotnet xunit -xml /tmp/test-results/Freya.Core.Hopac.Tests/TestResults.xml -configuration Release
-      - store_test_results:
+      - store_artifacts:
           path: /tmp/test-results
+          destination: TestResults
       - run: dotnet pack -c Release --include-source --include-symbols
       - store_artifacts:
           path: ~/build/src/Freya.Core/bin/Release
