@@ -1,0 +1,23 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: microsoft/dotnet:1.1-sdk
+    working_directory: ~/build
+    steps:
+      - checkout
+      - run: dotnet --info
+      - run: dotnet restore
+      - run: dotnet build -f netstandard1.6 -c Release src/Freya.Core
+      - run: dotnet build -f netstandard1.6 -c Release src/Freya.Core.Hopac
+#      - run: dotnet build -c Release
+#      - run: dotnet test -c Release tests/Freya.Core.Tests/Freya.Core.Tests.fsproj
+#      - run: dotnet test -c Release tests/Freya.Core.Hopac.Tests/Freya.Core.Hopac.Tests.fsproj
+#      - run: dotnet pack -c Release --include-source --include-symbols
+      - store_artifacts:
+          path: ~/build/src/Freya.Core/bin
+          destination: Freya.Core
+      - store_artifacts:
+          path: ~/build/src/Freya.Core.Hopac/bin
+          destination: Freya.Core.Hopac
