@@ -11,17 +11,17 @@ jobs:
       - run: dotnet restore
       - run: dotnet build -c Release
       - run:
-          name: dotnet xunit
+          name: dotnet xunit Freya.Core
           command: |
             mkdir -p /tmp/test-results/Freya.Core.Tests
-            pushd tests/Freya.Core.Tests
-            dotnet xunit -xml /tmp/test-results/Freya.Core.Tests -configuration Release
-            popd
-
+            cd tests/Freya.Core.Tests
+            dotnet xunit -xml /tmp/test-results/Freya.Core.Tests/TestResults.xml -configuration Release
+      - run:
+          name: dotnet xunit Freya.Core.Hopac
+          command: |
             mkdir -p /tmp/test-results/Freya.Core.Hopac.Tests
-            pushd tests/Freya.Core.Hopac.Tests
-            dotnet xunit -xml /tmp/test-results/Freya.Core.Hopac.Tests -configuration Release
-            popd
+            cd tests/Freya.Core.Hopac.Tests
+            dotnet xunit -xml /tmp/test-results/Freya.Core.Hopac.Tests/TestResults.xml -configuration Release
       - store_test_results:
           path: /tmp/test-results
       - run: dotnet pack -c Release --include-source --include-symbols
